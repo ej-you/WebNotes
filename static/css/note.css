@@ -1,0 +1,42 @@
+body {
+    margin: 20px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 25px;
+}
+
+h1 {
+    font-size: 70px;
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+nav button {
+    margin: auto 10px;
+    font-size: 25px;
+}
+
+#funcs {
+    margin: auto auto 20px auto;
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#funcs button {
+    margin: auto 10px;
+    font-size: 35px;
+}
+
+#editor {
+    margin: auto;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 12px;
+    width: 60%;
+}
