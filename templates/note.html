@@ -20,8 +20,12 @@
     <h1>Note editor</h1>
 
     <div id="funcs">
-        <button id="h1">h1</button>
-        <button id="b">b</button>
+        <button id="h1" onclick="wrapTag(this)">h1</button>
+        <button id="h2" onclick="wrapTag(this)">h2</button>
+        <button id="h3" onclick="wrapTag(this)">h3</button>
+        <button id="b" onclick="wrapTag(this)">b</button>
+        <button id="i" onclick="wrapTag(this)">i</button>
+        <button id="a" onclick="wrapTag(this)">a</button>
     </div>
 
     <div id="editor" contenteditable="true"></div>

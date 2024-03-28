@@ -17,6 +17,7 @@ nav {
 
 nav button {
     margin: auto 10px;
+    padding: auto;
     font-size: 25px;
 }
 
@@ -30,6 +31,9 @@ nav button {
 
 #funcs button {
     margin: auto 10px;
+    padding: auto;
+    flex-grow: 1;
+    flex-basis: 0;
     font-size: 35px;
 }
 
