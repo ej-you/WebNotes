@@ -69,3 +69,6 @@ venv.bak/
 
 # PyCharm
 /.idea/
+
+# logs dir
+/logs/

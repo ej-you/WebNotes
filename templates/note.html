@@ -5,21 +5,22 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="../static/css/note.css">
     <script src="../static/js/note.js"></script>
 
     <title>WebNotes | Note</title>
 </head>
 <body>
-    <nav>
+    <nav class="no-select">
         <button id="save" onclick="saveFunc()">save</button>
-        <button id="all_notes">all notes</button>
+        <a href="{{ url_for('notes_list') }}"><button id="all_notes">all notes</button></a>
         <button id="logout">logout</button>
     </nav>
 
-    <h1>Note editor</h1>
+    <h1 class="no-select">Note editor</h1>
 
-    <div id="funcs">
+    <div id="funcs" class="no-select">
         <button id="h1" onclick="wrapTag(this)">h1</button>
         <button id="h2" onclick="wrapTag(this)">h2</button>
         <button id="h3" onclick="wrapTag(this)">h3</button>

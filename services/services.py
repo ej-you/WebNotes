@@ -1,0 +1,6 @@
+def get_files_list() -> list:
+    ...
+
+
+def get_file_content() -> str:
+    ...

@@ -44,3 +44,7 @@ nav button {
     border-radius: 12px;
     width: 60%;
 }
+
+.no-select {
+    user-select: none;
+}
