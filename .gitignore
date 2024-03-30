@@ -72,3 +72,4 @@ venv.bak/
 
 # logs dir
 /logs/
+/files/

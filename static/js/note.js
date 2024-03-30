@@ -1,5 +1,5 @@
 // при нажатии на кнопку save выполняем созранение введённого текста
-function saveFunc () {
+function saveNote () {
     // записываем содержимое нашего редактора в переменную
     const content = document.getElementById('editor').innerHTML;
     console.log(content);
