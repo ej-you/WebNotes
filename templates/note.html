@@ -7,9 +7,8 @@
 
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/note.css') }}">
-    <script src="{{ url_for('static', filename='js/note.js') }}"></script>
 
-    <title>WebNotes | Note</title>
+    <title>WebNotes | Note "{{ note_name }}"</title>
 </head>
 <body>
     <nav class="no-select">
@@ -20,15 +19,8 @@
 
     <h1 class="no-select">Note editor</h1>
 
-    <div id="funcs" class="no-select">
-        <button id="h1" onclick="wrapTag(this)">h1</button>
-        <button id="h2" onclick="wrapTag(this)">h2</button>
-        <button id="h3" onclick="wrapTag(this)">h3</button>
-        <button id="b" onclick="wrapTag(this)">b</button>
-        <button id="i" onclick="wrapTag(this)">i</button>
-        <button id="a" onclick="wrapTag(this)">a</button>
-    </div>
-
     <div id="editor" contenteditable="true">{{ existing_text }}</div>
+
+    <script src="{{ url_for('static', filename='js/note.js') }}"></script>
 </body>
 </html>

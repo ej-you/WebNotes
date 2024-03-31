@@ -45,4 +45,5 @@ def note(note_name):
     return render_template(
         'note.html',
         existing_text=existing_text,
+        note_name=note_name,
     )

@@ -2,11 +2,17 @@ body {
     margin: 20px;
     font-family: Verdana, Arial, sans-serif;
     font-size: 25px;
+    overflow-x: hidden;
+    user-select: none;
 }
 
 h1 {
     font-size: 70px;
     text-align: center;
+}
+
+button {
+    cursor: pointer;
 }
 
 nav {
@@ -62,18 +68,115 @@ nav button {
     display: block;
     width: 40px;
     flex-shrink: 0;
+
+    cursor: pointer;
 }
 
-/* Стили для экранов шириной до 768px */
-@media screen and (max-width: 768px) {
+/*@media screen and (max-width: 768px) {*/
+/* Стили для экранов шириной до 920px */
+@media screen and (max-width: 920px) {
+    h1 {
+        font-size: 40px;
+    }
+
     #all-notes {
         width: 90%;
     }
+
+    .modalActive {
+        margin: 30% auto;
+        width: 55%;
+        height: 20%;
+    }
 }
 
-/* Стили для экранов шириной от 768px */
-@media screen and (min-width: 768px) {
+/*@media screen and (min-width: 768px) {*/
+/* Стили для экранов шириной от 920px */
+@media screen and (min-width: 920px) {
+    h1 {
+        font-size: 70px;
+    }
+
     #all-notes {
         width: 50%;
     }
+
+    .modalActive {
+        margin: 15% auto;
+        width: 35%;
+        height: 15%;
+    }
+}
+
+
+.modalBackground {
+    display: none;
+    background-color: rgba(0, 0, 0, 0.4);
+
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: 0;
+
+    z-index: 1;
+    cursor: pointer;
+}
+
+.modalActive {
+    padding: 20px;
+
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    cursor: default;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalClose {
+    right: 1%;
+    top: 1%;
+
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.modalClose svg {
+    margin: 3px;
+    width: 24px;
+    height: 24px;
+}
+
+.modalWindow {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    flex-grow: 1;
+}
+
+.modalWindow h4 {
+    margin: 1% auto 0 auto;
+    text-align: center;
+}
+
+.modalWindowInputs {
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.modalWindowInputs input[type=text] {
+    margin: 10px auto;
+    width: 60%;
+}
+
+.modalWindowInputs button {
+    margin: 10px auto;
+    width: 40%;
 }

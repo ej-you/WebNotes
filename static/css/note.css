@@ -4,6 +4,10 @@ body {
     font-size: 25px;
 }
 
+button {
+    cursor: pointer;
+}
+
 h1 {
     font-size: 70px;
     text-align: center;
@@ -19,22 +23,6 @@ nav button {
     margin: auto 10px;
     padding: auto;
     font-size: 25px;
-}
-
-#funcs {
-    margin: auto auto 20px auto;
-    width: 60%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-#funcs button {
-    margin: auto 10px;
-    padding: auto;
-    flex-grow: 1;
-    flex-basis: 0;
-    font-size: 35px;
 }
 
 #editor {
