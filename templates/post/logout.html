@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/post/logout.css') }}">
+
+    <title>WebNotes | Logout</title>
+</head>
+<body>
+    <nav class="no-select">
+        <a href="{{ url_for('all_notes') }}" id="all_notes"><button>all-notes</button></a>
+    </nav>
+
+    <h1>Logout</h1>
+
+    {% if error %}
+        <p class="error">Error: {{ error }}</p>
+    {% endif %}
+
+    <h3>Are you sure you want to log out?"</h3>
+    <form action="{{ url_for('logout') }}" method="post">
+        <input type="submit" value="Yes" name="logout_sure">
+        <a href="{{ url_for('all_notes') }}"><input type="button" value="No"></a>
+    </form>
+</body>
+</html>

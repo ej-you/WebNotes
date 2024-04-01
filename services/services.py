@@ -18,4 +18,3 @@ def save_new_content(note_name: str, note_content: str) -> str:
 
     except Exception as error:
         return str(error)
-
