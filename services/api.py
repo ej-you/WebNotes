@@ -3,6 +3,7 @@ from os import listdir, remove
 from flask import request, jsonify
 
 from data.constants import FILES_ROOT, app
+from .services import save_new_content
 
 
 @app.before_request
@@ -55,3 +56,18 @@ def delete_note():
         return jsonify({"error": error}), 500
 
     return jsonify({}), 200
+
+
+@app.route('/api/save_note', methods=["POST"])
+def save_note():
+    # достаём новое содержимое заметки для сохранения
+    body_json = request.json
+    note_name = body_json.get("note_name")
+    note_content = body_json.get("note_content")
+
+    result = save_new_content(note_name=note_name, note_content=note_content)
+
+    if result == 'successfully':
+        return jsonify({}), 200
+    else:
+        return jsonify({"error": result}), 500

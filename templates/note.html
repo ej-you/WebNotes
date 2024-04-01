@@ -19,7 +19,7 @@
 
     <h1 class="no-select">Note editor</h1>
 
-    <div id="editor" contenteditable="true">{{ existing_text }}</div>
+    <div id="editor" contenteditable="true">{{ existing_text | safe }}</div>
 
     <script src="{{ url_for('static', filename='js/note.js') }}"></script>
 </body>

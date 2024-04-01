@@ -1,13 +1,4 @@
-from re import sub as re_sub
-
 from data.constants import FILES_ROOT
-
-
-def txt_to_html(txt: str) -> str:
-    # изменяем \n на <br>
-    br_txt = re_sub('\\n', '<br>', txt)
-
-    return txt
 
 
 def get_file_content(note_name: str) -> str:
@@ -15,7 +6,16 @@ def get_file_content(note_name: str) -> str:
     with open(f'{FILES_ROOT}/{note_name}') as note_file:
         existing_text = note_file.read()
 
-    # изменяем разметку markdown на разметку html
-    processed_file = txt_to_html(txt=existing_text)
+    return existing_text
 
-    return processed_file
+
+def save_new_content(note_name: str, note_content: str) -> str:
+    try:
+        # читаем содержимое файла
+        with open(f'{FILES_ROOT}/{note_name}', 'w') as note_file:
+            note_file.write(note_content)
+        return 'successfully'
+
+    except Exception as error:
+        return str(error)
+
