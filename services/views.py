@@ -18,12 +18,10 @@ def check_auth_token():
     print(relative_url)
 
 
-@app.route('/', methods=["GET", "POST"])
 def index():
     return render_template('index.html')
 
 
-@app.route('/all-notes')
 def all_notes():
     # получаем список всех файлов
     notes = listdir(FILES_ROOT)
@@ -33,7 +31,6 @@ def all_notes():
     )
 
 
-@app.route('/note/<note_name>', methods=["GET", "POST"])
 def note(note_name):
     # если имя файла не найдено в списке файлов, то возвращаем 404
     if note_name not in listdir(FILES_ROOT):
@@ -68,7 +65,6 @@ def note(note_name):
     )
 
 
-@app.route('/create-note', methods=["GET", "POST"])
 def create_note():
     if request.method == "GET":
         return render_template("post/create_note.html")
@@ -95,7 +91,6 @@ def create_note():
         return render_template("all_notes.html", notes=notes, status="created")
 
 
-@app.route('/delete-note/<note_name>', methods=["GET", "POST"])
 def delete_note(note_name):
     # если имя файла не найдено в списке файлов, то возвращаем 404
     if note_name not in listdir(FILES_ROOT):
@@ -126,7 +121,6 @@ def delete_note(note_name):
         return render_template("all_notes.html", notes=notes, status="deleted")
 
 
-@app.route('/logout', methods=["GET", "POST"])
 def logout():
     if request.method == "GET":
         return render_template("post/logout.html")
