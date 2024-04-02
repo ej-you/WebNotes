@@ -25,8 +25,8 @@
     <h3>Are you sure you want to delete note "{{ note_name }}"?</h3>
     <form action="{{ url_for('delete_note', note_name=note_name) }}" method="post">
         <input type="hidden" value="{{ note_name }}" name="note_name">
-        <input type="submit" value="Yes" name="delete_sure">
-        <a href="{{ url_for('all_notes') }}"><input type="button" value="No"></a>
+        <input type="submit" value="Yes" name="delete_sure" class="answer">
+        <a href="{{ url_for('all_notes') }}" class="answer"><input type="button" value="No"></a>
     </form>
 </body>
 </html>

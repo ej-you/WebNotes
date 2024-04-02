@@ -1,0 +1,92 @@
+body {
+    margin: 20px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 25px;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+}
+
+nav button {
+    margin: auto 10px;
+    padding: auto;
+    font-size: 25px;
+}
+
+.error {
+    color: indianred;
+    font-weight: bold;
+    text-align: center;
+}
+
+form {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+
+    width: 30%;
+    height: 30px;
+    justify-content: center;
+}
+
+.answer {
+    margin: 0 10px;
+    padding: 1px 5px;
+
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: lightgray;
+    text-decoration: none;
+
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.answer input {
+    padding: 0;
+    border: none;
+    background-color: lightgray;
+}
+
+/* Стили для экранов шириной до 920px */
+@media screen and (max-width: 920px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+}
+
+/* Стили для экранов шириной от 920px */
+@media screen and (min-width: 920px) {
+    h1 {
+        font-size: 70px;
+    }
+
+    nav {
+        justify-content: flex-end;
+    }
+
+    h3 {
+        font-size: 35px;
+    }
+}

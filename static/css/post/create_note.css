@@ -1,0 +1,79 @@
+body {
+    margin: 20px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 25px;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+}
+
+nav button {
+    margin: auto 10px;
+    padding: auto;
+    font-size: 25px;
+}
+
+.error {
+    color: indianred;
+    font-weight: bold;
+    text-align: center;
+}
+
+form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    margin: auto 0 10px 0;
+}
+
+form button {
+    margin: auto auto;
+    flex-shrink: 1;
+
+    width: 80%
+}
+
+/* Стили для экранов шириной до 920px */
+@media screen and (max-width: 920px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    form {
+        width: 30%;
+    }
+}
+
+/* Стили для экранов шириной от 920px */
+@media screen and (min-width: 920px) {
+    h1 {
+        font-size: 70px;
+    }
+
+    nav {
+        justify-content: flex-end;
+    }
+
+    form {
+        width: 20%;
+    }
+}

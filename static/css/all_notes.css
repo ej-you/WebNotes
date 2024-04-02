@@ -7,7 +7,6 @@ body {
 }
 
 h1 {
-    font-size: 70px;
     text-align: center;
 }
 
@@ -25,6 +24,10 @@ nav button {
     margin: auto 10px;
     padding: auto;
     font-size: 25px;
+}
+
+.status {
+    text-align: center
 }
 
 #all-notes {
@@ -48,7 +51,7 @@ nav button {
     justify-content: space-between;
 }
 
-.note a {
+.title {
     padding: 10px;
 
     display: block;
@@ -62,7 +65,7 @@ nav button {
     color: black;
 }
 
-.note svg {
+.delete-cross svg {
     padding: 10px;
 
     display: block;
@@ -72,11 +75,14 @@ nav button {
     cursor: pointer;
 }
 
-/*@media screen and (max-width: 768px) {*/
 /* Стили для экранов шириной до 920px */
 @media screen and (max-width: 920px) {
     h1 {
         font-size: 40px;
+    }
+
+    nav {
+        justify-content: center;
     }
 
     #all-notes {
@@ -84,11 +90,14 @@ nav button {
     }
 }
 
-/*@media screen and (min-width: 768px) {*/
 /* Стили для экранов шириной от 920px */
 @media screen and (min-width: 920px) {
     h1 {
         font-size: 70px;
+    }
+
+    nav {
+        justify-content: flex-end;
     }
 
     #all-notes {

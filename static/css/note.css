@@ -16,7 +16,6 @@ h1 {
 nav {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
 }
 
 nav button {
@@ -30,9 +29,40 @@ nav button {
     padding: 10px;
     border: 2px solid black;
     border-radius: 12px;
-    width: 60%;
 }
 
 .no-select {
     user-select: none;
+}
+
+/* Стили для экранов шириной до 920px */
+@media screen and (max-width: 920px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    nav {
+        justify-content: center;
+    }
+
+    #editor {
+        font-size: 20px;
+        width: 90%;
+    }
+}
+
+/* Стили для экранов шириной от 920px */
+@media screen and (min-width: 920px) {
+    h1 {
+        font-size: 70px;
+    }
+
+    nav {
+        justify-content: flex-end;
+    }
+
+    #editor {
+        font-size: 25px;
+        width: 60%;
+    }
 }
