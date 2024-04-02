@@ -24,6 +24,12 @@ nav button {
     font-size: 25px;
 }
 
+.error {
+    color: indianred;
+    font-weight: bold;
+    text-align: center;
+}
+
 #editor {
     margin: auto;
     padding: 10px;

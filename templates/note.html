@@ -21,6 +21,11 @@
     </nav>
 
     <h1 class="no-select">Note editor</h1>
+
+    {% if error %}
+        <p class="error">Error: {{ error }}</p>
+    {% endif %}
+
     <div id="editor" contenteditable="true">{{ existing_text | safe }}</div>
 
     <script src="{{ url_for('static', filename='js/note.js') }}"></script>

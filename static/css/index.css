@@ -1,3 +1,72 @@
 body {
-    background: salmon;
+    margin: 20px;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 25px;
+    overflow-x: hidden;
+    user-select: none;
+}
+
+h1, h3 {
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+.error {
+    color: indianred;
+    font-weight: bold;
+    text-align: center;
+}
+
+form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form input {
+    margin: auto 0 10px 0;
+}
+
+form button {
+    margin: auto auto;
+    flex-shrink: 1;
+
+    border: 1px solid black;
+    border-radius: 3px;
+    background-color: lightgray;
+
+    width: 80%
+}
+
+/* Стили для экранов шириной до 920px */
+@media screen and (max-width: 920px) {
+    h1 {
+        font-size: 40px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    form {
+        width: 30%;
+    }
+}
+
+/* Стили для экранов шириной от 920px */
+@media screen and (min-width: 920px) {
+    h1 {
+        font-size: 70px;
+    }
+
+    h3 {
+        font-size: 35px;
+    }
+
+    form {
+        width: 20%;
+    }
 }

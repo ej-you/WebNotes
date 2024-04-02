@@ -12,5 +12,16 @@
 </head>
 <body>
     <h1>Index</h1>
+
+    <h3>Please, log in to use this service!</h3>
+
+    {% if error %}
+        <p class="error">Error: {{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('index') }}" method="post">
+        <input type="password" name="secret_key" placeholder="secret key" required>
+        <button type="submit">Log in</button>
+    </form>
 </body>
 </html>
