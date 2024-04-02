@@ -1,6 +1,17 @@
-from services import views
+from os import listdir, mkdir
 
-from data.constants import app
+from data.constants import BASEDIR, app
+
+try:
+    from services import views
+except FileNotFoundError:
+    all_dirs = listdir(BASEDIR)
+    if 'files' not in all_dirs:
+        mkdir(f'{BASEDIR}/files')
+    if 'logs' not in all_dirs:
+        mkdir(f'{BASEDIR}/logs')
+
+    from services import views
 
 
 app.add_url_rule("/", methods=["GET", "POST"], view_func=views.index)
@@ -15,4 +26,5 @@ app.add_url_rule("/logout", methods=["GET", "POST"], view_func=views.logout)
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port='5000')
+    # app.run(debug=True, host='0.0.0.0', port='5000')
+    app.run(debug=False, host='0.0.0.0', port='8080')

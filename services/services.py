@@ -1,8 +1,17 @@
+import logging
 import jwt
 
 from datetime import datetime
 
 from data.constants import FILES_ROOT, JWT_EXPIRE, JWT_SECRET_KEY
+
+
+logger = logging.getLogger('flask-server')
+logging.basicConfig(
+    level=logging.INFO,
+    filename='logs/views_logs.log',
+    format='%(levelname)s: (%(module)s, %(lineno)s) -- %(message)s',
+)
 
 
 def get_file_content(note_name: str) -> str:

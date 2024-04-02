@@ -2,8 +2,9 @@ from os import listdir, remove
 
 from flask import abort, render_template, request, make_response
 
-from data.constants import FILES_ROOT, PROTOCOl, SECRET_KEY, app, logger
-from .services import (get_file_content, save_new_content,
+from data.constants import FILES_ROOT, PROTOCOl, SECRET_KEY, app
+from .services import (logger,
+                       get_file_content, save_new_content,
                        create_token, check_token_expired)
 
 
