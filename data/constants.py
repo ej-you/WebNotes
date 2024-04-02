@@ -1,4 +1,5 @@
 import os
+import logging
 from datetime import timedelta
 from dotenv import load_dotenv
 from pathlib import Path
@@ -19,3 +20,10 @@ PROTOCOl = "http://"
 FILES_ROOT = f'{BASEDIR}/files'
 
 app = Flask(__name__, template_folder=f"{BASEDIR}/templates", static_folder=f"{BASEDIR}/static")
+
+logger = logging.getLogger('flask-server')
+logging.basicConfig(
+    level=logging.INFO,
+    filename='logs/views_logs.log',
+    format='%(levelname)s: (%(module)s, %(lineno)s) -- %(message)s',
+)

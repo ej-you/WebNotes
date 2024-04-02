@@ -2,7 +2,7 @@ from os import listdir, remove
 
 from flask import abort, render_template, request, make_response
 
-from data.constants import FILES_ROOT, PROTOCOl, SECRET_KEY, app
+from data.constants import FILES_ROOT, PROTOCOl, SECRET_KEY, app, logger
 from .services import (get_file_content, save_new_content,
                        create_token, check_token_expired)
 
@@ -23,10 +23,12 @@ def check_auth_token():
     if relative_url != '/':
         # если юзер не авторизован, перекидываем его для авторизации на главную
         if not auth_cookie:
+            logger.info(f'Not authorized to get resource "{relative_url}"')
             return render_template("index.html")
 
         # проверка токена на то, истёк ли он или нет
         if check_token_expired(token=auth_cookie):
+            logger.info('Token is expired')
             # создаём ответ с главной страницей
             response = make_response(render_template("index.html"))
 
@@ -36,6 +38,7 @@ def check_auth_token():
 
     # если юзер уже авторизирован, но просится на ресурс входа
     elif auth_cookie and relative_url == '/':
+        logger.warning('Already authorized')
         # получаем список всех файлов
         notes = listdir(FILES_ROOT)
         return render_template(
@@ -51,6 +54,7 @@ def index():
         secret_key = request.form['secret_key']
 
         if secret_key == SECRET_KEY:
+            logger.info(f'Log in')
             # получаем список всех файлов
             notes = listdir(FILES_ROOT)
             # создаём ответ и добавляем в куки токен авторизации
@@ -62,6 +66,7 @@ def index():
             return response
 
         else:
+            logger.critical('Invalid secret key to log in!')
             return render_template('index.html', error="Invalid secret key!")
 
     return render_template('index.html')
@@ -79,6 +84,7 @@ def all_notes():
 def note(note_name):
     # если имя файла не найдено в списке файлов, то возвращаем 404
     if note_name not in listdir(FILES_ROOT):
+        logger.error('Note with this name was not found!')
         abort(404)
 
     # запрашивается создание новой заметки
@@ -91,6 +97,7 @@ def note(note_name):
 
         # если возникла ошибка при сохранении контента заметки
         if result != 'successfully':
+            logger.critical(f'Note not saved. Error: {result}')
             # достаём текст из файла
             existing_text = get_file_content(note_name=note_name)
             return render_template(
@@ -123,6 +130,7 @@ def create_note():
 
         # если заметка с таким именем уже существует, то возвращаем ошибку
         if new_note_name in listdir(FILES_ROOT):
+            logger.error(f'Cannot create note! Note with title "{new_note_name}" already exists!')
             error = "Cannot create note! Note with this title already exists!"
             return render_template("post/create_note.html", error=error)
 
@@ -151,6 +159,7 @@ def delete_note(note_name):
 
         # если заметка с таким именем не найдена, то возвращаем ошибку
         if note_name not in listdir(FILES_ROOT):
+            logger.error(f'Cannot delete note! Note with title "{note_name}" does not exists!')
             error = "Cannot delete note! Note with this title does not exists!"
             return render_template("post/delete_note.html", error=error)
 
@@ -158,6 +167,7 @@ def delete_note(note_name):
             # удаление файла заметки
             remove(f'{FILES_ROOT}/{note_name}')
         except Exception as error:
+            logger.critical(f'Error handled while removing physical file of note. Error: {error}', exc_info=True)
             return render_template("post/delete_note.html", error=error)
 
         # получаем список всех файлов
@@ -172,6 +182,7 @@ def logout():
 
     # запрашивается выход из аккаунта
     elif request.method == "POST":
+        logger.info('Log out')
         # создаём ответ и удаляем куки авторизации
         response = make_response(render_template("index.html"))
         response.set_cookie('Authorization', max_age=0)
