@@ -22,6 +22,21 @@
 
     <h1 class="no-select">Note editor</h1>
 
+    <div id="funcs">
+        <button id="b" onclick="wrapText(this)">b</button>
+        <button id="i" onclick="wrapText(this)">i</button>
+        <button id="undo" onclick="wrapText(this)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M17.026 22.957c10.957-11.421-2.326-20.865-10.384-13.309l2.464 2.352h-9.106v-8.947l2.232 2.229c14.794-13.203 31.51 7.051 14.794 17.675z"/>
+            </svg>
+        </button>
+        <button id="redo" onclick="wrapText(this)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M6.974 22.957c-10.957-11.421 2.326-20.865 10.384-13.309l-2.464 2.352h9.106v-8.947l-2.232 2.229c-14.794-13.203-31.51 7.051-14.794 17.675z"/>
+            </svg>
+        </button>
+    </div>
+
     {% if error %}
         <p class="error">Error: {{ error }}</p>
     {% endif %}

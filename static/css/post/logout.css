@@ -53,6 +53,8 @@ form {
     display: flex;
     justify-content: center;
     flex-grow: 1;
+
+    cursor: pointer;
 }
 
 .answer input {
