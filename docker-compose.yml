@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: web_notes
+    restart: always
+    env_file:
+      - .env
+    command: python3 /root/app/app.py
+    volumes:
+      - logs:/root/app/logs:rw
+      - files:/root/app/files:rw
+    expose:
+      - "5001"
+    networks:
+      proj_network:
+        ipv4_address: 172.19.1.2
+
+
+networks:
+  proj_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.1.0/24
+
+
+volumes:
+  logs:
+  files:
