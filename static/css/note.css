@@ -54,6 +54,12 @@ nav button {
     padding: 10px;
     border: 2px solid black;
     border-radius: 12px;
+
+    overflow: auto;
+    box-sizing: border-box;
+}
+#editor pre {
+    margin: 0;
 }
 
 .no-select {
