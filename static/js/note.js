@@ -11,8 +11,6 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
 
 function wrapText(button) {
-    console.log(button.id);
-
     switch (button.id) {
         case ('b'):
             document.execCommand("bold");
@@ -39,13 +37,11 @@ function wrapText(button) {
                 document.execCommand("italic");
             }
 
-//            const editorFontSize = window.getComputedStyle(editorElem).fontSize
-//
-//            const spans = document.querySelectorAll('#editor span');
-//            spans.forEach(span => {
-//                span.style.fontSize = editorFontSize;
-//            });
-
+            // Удаление свойства font-size у всех span во избежание произвольного изменения размера текста редактора
+            const spans = document.querySelectorAll('#editor span');
+            spans.forEach(span => {
+                span.style.removeProperty("font-size")
+            });
             break;
     };
 }
