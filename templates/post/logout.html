@@ -23,8 +23,23 @@
 
     <h3>Are you sure you want to log out?"</h3>
     <form action="{{ url_for('logout') }}" method="post">
-        <input type="submit" value="Yes" name="logout_sure" class="answer">
-        <a href="{{ url_for('all_notes') }}" class="answer"><input type="button" value="No"></a>
+        <input id="complete" type="submit" value="Yes" name="logout_sure" class="answer">
+        <a id="restore" href="{{ url_for('all_notes') }}" class="answer"><input type="button" value="No"></a>
     </form>
+
+    <script>
+        document.addEventListener("keypress", (event) => {
+            let keyCode = event.which || event.keyCode;
+            console.log(keyCode);
+
+            if (keyCode === 13) {
+                const completeButton = document.getElementById('complete');
+                completeButton.click()
+            } else {
+                const restoreButton = document.getElementById('restore');
+                restoreButton.click()
+            }
+        });
+    </script>
 </body>
 </html>

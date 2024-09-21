@@ -23,7 +23,7 @@
     {% endif %}
 
     <form action="{{ url_for('create_note') }}" method="post">
-        <input type="text" name="new_note_name" placeholder="new note title" required>
+        <input type="text" name="new_note_name" placeholder="new note title" required autofocus>
         <button type="submit">Create</button>
     </form>
 </body>
