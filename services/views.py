@@ -1,6 +1,7 @@
 from os import listdir, remove
 
-from flask import abort, render_template, request, make_response
+from docutils.nodes import status
+from flask import abort, render_template, request, make_response, redirect, url_for
 
 from data.constants import FILES_ROOT, PROTOCOl, SECRET_KEY, app
 from .services import (logger,
@@ -25,14 +26,13 @@ def check_auth_token():
         # если юзер не авторизован, перекидываем его для авторизации на главную
         if not auth_cookie:
             logger.info(f'Not authorized to get resource "{relative_url}"')
-            return render_template("index.html")
+            return redirect(location="/")
 
         # проверка токена на то, истёк ли он или нет
         if check_token_expired(token=auth_cookie):
             logger.info('Token is expired')
             # создаём ответ с главной страницей
-            response = make_response(render_template("index.html"))
-
+            response = make_response(redirect(location="/"))
             # удаляем из куки токен авторизации юзера
             response.set_cookie('Authorization', max_age=0)
             return response
@@ -40,12 +40,7 @@ def check_auth_token():
     # если юзер уже авторизирован, но просится на ресурс входа
     elif auth_cookie and relative_url == '/':
         logger.warning('Already authorized')
-        # получаем список всех файлов
-        notes = listdir(FILES_ROOT)
-        return render_template(
-            "all_notes.html",
-            notes=notes,
-        )
+        return redirect(location=url_for("all_notes"))
 
 
 def index():
@@ -56,13 +51,8 @@ def index():
 
         if secret_key == SECRET_KEY:
             logger.info(f'Log in')
-            # получаем список всех файлов
-            notes = listdir(FILES_ROOT)
             # создаём ответ и добавляем в куки токен авторизации
-            response = make_response(render_template(
-                "all_notes.html",
-                notes=notes,
-            ))
+            response = make_response(redirect(location=url_for("all_notes")))
             response.set_cookie('Authorization', f'{create_token()}')
             return response
 
@@ -74,11 +64,17 @@ def index():
 
 
 def all_notes():
+    # парсинг статуса из параметров запроса
+    status_on_change = request.args.get('status')
+    if not status_on_change:
+        status_on_change = request.args.get('status')
+
     # получаем список всех файлов
     notes = listdir(FILES_ROOT)
     return render_template(
         'all_notes.html',
         notes=notes,
+        status=status_on_change,
     )
 
 
@@ -95,22 +91,23 @@ def note(note_name):
 
         # сохранение нового контента заметки
         result = save_new_content(note_name=note_name, note_content=note_content)
-
         # если возникла ошибка при сохранении контента заметки
         if result != 'successfully':
             logger.critical(f'Note not saved. Error: {result}')
-            # достаём текст из файла
-            existing_text = get_file_content(note_name=note_name)
-            return render_template(
-                'note.html',
-                existing_text=existing_text,
-                note_name=note_name,
-                error=result,
-            )
+            return redirect(location=url_for("note", note_name=note_name, error=result))
+        return redirect(location=url_for("note", note_name=note_name))
 
     # достаём текст из файла
     existing_text = get_file_content(note_name=note_name)
-    # рендерим страничку заметки для её редактирования
+    # парсинг ошибки сохранения заметки из параметров запроса
+    if err := request.args.get('error'):
+        # рендерим страничку заметки для её редактирования
+        return render_template(
+            'note.html',
+            existing_text=existing_text,
+            note_name=note_name,
+            error=err,
+        )
     return render_template(
         'note.html',
         existing_text=existing_text,
@@ -139,10 +136,8 @@ def create_note():
         with open(f'{FILES_ROOT}/{new_note_name}', 'w'):
             pass
 
-        # получаем список всех файлов
-        notes = listdir(FILES_ROOT)
-        # перекидываем юзера на страницу со всеми заметками
-        return render_template("all_notes.html", notes=notes, status="created")
+        # перекидываем юзера на страницу со всеми заметками (с параметром статуса о созданной заметке)
+        return redirect(location=url_for("all_notes", status="created"))
 
 
 def delete_note(note_name):
@@ -171,10 +166,8 @@ def delete_note(note_name):
             logger.critical(f'Error handled while removing physical file of note. Error: {error}', exc_info=True)
             return render_template("post/delete_note.html", error=error)
 
-        # получаем список всех файлов
-        notes = listdir(FILES_ROOT)
-        # перекидываем юзера на страницу со всеми заметками
-        return render_template("all_notes.html", notes=notes, status="deleted")
+        # перекидываем юзера на страницу со всеми заметками (с параметром статуса об удалённой заметке)
+        return redirect(location=url_for("all_notes", status="deleted"))
 
 
 def logout():
@@ -185,6 +178,6 @@ def logout():
     elif request.method == "POST":
         logger.info('Log out')
         # создаём ответ и удаляем куки авторизации
-        response = make_response(render_template("index.html"))
+        response = make_response(redirect(location="/"))
         response.set_cookie('Authorization', max_age=0)
         return response

@@ -19,4 +19,4 @@ PROTOCOl = "http://"
 
 FILES_ROOT = f'{BASEDIR}/files'
 
-app = Flask(__name__, template_folder=f"{BASEDIR}/templates", static_folder=f"{BASEDIR}/static")
+app = Flask("app", template_folder=f"{BASEDIR}/templates", static_folder=f"{BASEDIR}/static")
