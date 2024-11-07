@@ -1,5 +1,16 @@
 const editorElem = document.getElementById('editor');
 
+
+document.addEventListener("keypress", (event) => {
+    // сохранение заметки при комбинации клавиш Ctrl+Enter
+    if (event.key == "Enter" && event.ctrlKey) {
+        event.preventDefault();
+        const saveButton = document.getElementById('saveButton');
+        saveButton.click()
+    }
+});
+
+
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault();
     let content = editorElem.innerHTML;

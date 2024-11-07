@@ -26,19 +26,25 @@ form {
     flex-direction: column;
 }
 
+form > * {
+    border: 1px solid black;
+    border-radius: 30px;
+}
+
 form input {
     margin: auto 0 10px 0;
+    padding: 5px 15px;
+    font-size: 20px;
 }
 
 form button {
     margin: auto auto;
+    padding: 2px 0;
+    font-size: 20px;
     flex-shrink: 1;
 
-    border: 1px solid black;
-    border-radius: 3px;
     background-color: lightgray;
-
-    width: 80%
+    width: 100%
 }
 
 /* Стили для экранов шириной до 920px */
@@ -52,7 +58,7 @@ form button {
     }
 
     form {
-        width: 30%;
+        width: 80%;
     }
 }
 
