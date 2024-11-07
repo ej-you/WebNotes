@@ -1,6 +1,5 @@
 from os import listdir, remove
 
-from docutils.nodes import status
 from flask import abort, render_template, request, make_response, redirect, url_for
 
 from data.constants import FILES_ROOT, PROTOCOl, SECRET_KEY, app
