@@ -7,37 +7,46 @@
 
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/note.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/themes.css') }}">
 
     <title>WebNotes | Note "{{ note_name }}"</title>
 </head>
 <body>
+    <script src="{{ url_for('static', filename='js/themes.js') }}"></script>
+
     <nav class="no-select">
+        <button onclick="toggleTheme()" id="theme">
+            <svg fill="none" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path class="icon" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12 20V4C16.4183 4 20 7.58172 20 12C20 16.4183 16.4183 20 12 20Z" fill="#212121"/>
+            </svg>
+        </button>
         <form action="{{ url_for('note', note_name=note_name) }}" method="post">
             <input type="hidden" id="content" name="content">
             <button id="saveButton" type="submit">save</button>
         </form>
         <a href="{{ url_for('all_notes') }}" id="all_notes"><button>all-notes</button></a>
-        <a href="{{ url_for('logout') }}" id="logout"><button>logout</button></a>
     </nav>
 
     <h1 class="no-select">Note editor</h1>
+    <h3 class="no-select"><i>{{ note_name }}</i></h3>
 
     <div id="funcs">
         <button id="b" onclick="wrapText(this)">b</button>
         <button id="i" onclick="wrapText(this)">i</button>
+        <button id="link" onclick="wrapText(this)">a</button>
         <button id="undo" onclick="wrapText(this)">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M17.026 22.957c10.957-11.421-2.326-20.865-10.384-13.309l2.464 2.352h-9.106v-8.947l2.232 2.229c14.794-13.203 31.51 7.051 14.794 17.675z"/>
+                <path class="icon" d="M17.026 22.957c10.957-11.421-2.326-20.865-10.384-13.309l2.464 2.352h-9.106v-8.947l2.232 2.229c14.794-13.203 31.51 7.051 14.794 17.675z"/>
             </svg>
         </button>
         <button id="redo" onclick="wrapText(this)">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M6.974 22.957c-10.957-11.421 2.326-20.865 10.384-13.309l-2.464 2.352h9.106v-8.947l-2.232 2.229c-14.794-13.203-31.51 7.051-14.794 17.675z"/>
+                <path class="icon" d="M6.974 22.957c-10.957-11.421 2.326-20.865 10.384-13.309l-2.464 2.352h9.106v-8.947l-2.232 2.229c-14.794-13.203-31.51 7.051-14.794 17.675z"/>
             </svg>
         </button>
         <button id="clearFormat" onclick="wrapText(this)">
             <svg enable-background="new 0 0 100 100" width="24" height="24" version="1.0" viewBox="0 0 100 100" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
-                <path d="M83.333,20h-6.666v-3.334C76.667,12.981,73.685,10,70,10H16.667C12.985,10,10,12.981,10,16.666V30  c0,3.682,2.981,6.666,6.667,6.666H70c3.682,0,6.667-2.981,6.667-6.666v-3.334h6.666v16.667h-30C45.97,43.333,40,49.297,40,56.666  v6.667l-3.333,3.333V90H50V66.666l-3.333-3.333v-6.667c0-3.685,2.984-6.666,6.666-6.666h30C87.015,50,90,47.018,90,43.333V26.666  C90,22.984,87.019,20,83.333,20z"/>
+                <path class="icon" d="M83.333,20h-6.666v-3.334C76.667,12.981,73.685,10,70,10H16.667C12.985,10,10,12.981,10,16.666V30  c0,3.682,2.981,6.666,6.667,6.666H70c3.682,0,6.667-2.981,6.667-6.666v-3.334h6.666v16.667h-30C45.97,43.333,40,49.297,40,56.666  v6.667l-3.333,3.333V90H50V66.666l-3.333-3.333v-6.667c0-3.685,2.984-6.666,6.666-6.666h30C87.015,50,90,47.018,90,43.333V26.666  C90,22.984,87.019,20,83.333,20z"/>
             </svg>
         </button>
     </div>

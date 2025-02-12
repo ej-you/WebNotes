@@ -3,9 +3,9 @@ from os import listdir, remove
 from flask import abort, render_template, request, make_response, redirect, url_for
 
 from data.constants import FILES_ROOT, PROTOCOl, SECRET_KEY, app
-from .services import (logger,
-                       get_file_content, save_new_content,
-                       create_token, check_token_expired)
+from services.services import (logger,
+                      get_file_content, save_new_content,
+                      create_token, check_token_expired)
 
 
 @app.before_request

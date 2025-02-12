@@ -7,10 +7,13 @@
 
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/themes.css') }}">
 
     <title>WebNotes | Index</title>
 </head>
 <body>
+    <script src="{{ url_for('static', filename='js/themes.js') }}"></script>
+
     <h1>WebNotes</h1>
 
     <h3>Please, log in to use this service!</h3>
@@ -20,8 +23,8 @@
     {% endif %}
 
     <form action="{{ url_for('index') }}" method="post">
-        <input type="password" name="secret_key" placeholder="secret key" required autofocus>
-        <button type="submit">Log in</button>
+        <input id="password-input" type="password" name="secret_key" placeholder="secret key" required autofocus>
+        <button id="login-btn" type="submit">Log in</button>
     </form>
 </body>
 </html>

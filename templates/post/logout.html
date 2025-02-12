@@ -7,10 +7,13 @@
 
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/post/logout.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/themes.css') }}">
 
     <title>WebNotes | Logout</title>
 </head>
 <body>
+    <script src="{{ url_for('static', filename='js/themes.js') }}"></script>
+
     <nav class="no-select">
         <a href="{{ url_for('all_notes') }}" id="all_notes"><button>all-notes</button></a>
     </nav>

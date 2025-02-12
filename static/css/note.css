@@ -10,8 +10,7 @@ button {
     cursor: pointer;
 }
 
-h1 {
-    font-size: 70px;
+h1, h3 {
     text-align: center;
 }
 
@@ -86,6 +85,10 @@ nav button {
         font-size: 40px;
     }
 
+    h3 {
+        font-size: 20px;
+    }
+
     nav {
         justify-content: center;
     }
@@ -104,6 +107,10 @@ nav button {
 @media screen and (min-width: 920px) {
     h1 {
         font-size: 70px;
+    }
+
+    h3 {
+        font-size: 30px;
     }
 
     nav {

@@ -29,6 +29,12 @@ function wrapText(button) {
         case ('i'):
             document.execCommand("italic");
             break;
+        case ('link'):
+            let url = prompt("Введите URL:");
+            if (url) {
+                document.execCommand("createLink", false, url);
+            }
+            break;
         case ('undo'):
             document.execCommand("undo");
             break;
@@ -56,3 +62,11 @@ function wrapText(button) {
             break;
     };
 }
+
+
+document.getElementById('editor').addEventListener('click', function(event) {
+    if (event.target.tagName === 'A') {
+        event.preventDefault(); // предотвращаем редактирование ссылки
+        window.open(event.target.href, '_blank'); // открываем ссылку в новой вкладке
+    }
+});

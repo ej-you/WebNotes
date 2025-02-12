@@ -1,0 +1,90 @@
+#theme {
+    display: flex;
+    align-items: center;
+    height: 34.75px;
+}
+
+#theme svg {
+    padding: 2px 6px;
+}
+
+
+body.dark-theme {
+    background-color: #222222;
+    color: white;
+}
+
+body.dark-theme nav {
+    background-color: #222222;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-theme nav button {
+    border: 2px solid white;
+    border-radius: 3px;
+    background-color: #222222;
+    color: white;
+}
+
+body.dark-theme .note {
+    background-color: #222222;
+    border: 1px solid white;
+}
+
+body.dark-theme .note a {
+    color: white;
+}
+
+body.dark-theme .icon {
+    fill: white;
+}
+
+
+body.dark-theme #funcs button {
+    border: 2px solid white;
+    border-radius: 3px;
+    background-color: #222222;
+    color: white;
+}
+
+body.dark-theme #editor {
+    border: 2px solid white;
+    border-radius: 12px;
+}
+
+
+
+
+body.dark-theme input {
+    background-color: #222222;
+    color: white;
+}
+
+body.dark-theme #create-note-input {
+    border: 2px solid white;
+}
+
+body.dark-theme .answer {
+    border: 2px solid white;
+}
+
+body.dark-theme a.answer {
+    background-color: #222222;
+}
+
+body.dark-theme #create-note-btn {
+    border: 2px solid white;
+    background-color: #222222;
+    color: white;
+}
+
+
+body.dark-theme #password-input {
+    border: 2px solid white;
+}
+
+body.dark-theme #login-btn {
+    border: 2px solid white;
+    background-color: #222222;
+    color: white;
+}
