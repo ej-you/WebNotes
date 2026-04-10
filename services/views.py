@@ -123,8 +123,6 @@ def create_note():
         # достаём из формы имя для новой заметки
         new_note_name = request.form['new_note_name']
 
-        # ДОБАВИТЬ ПРОВЕРКУ НА ВАЛИДНОЕ ИМЯ ЗАМЕТКИ (ФАЙЛА)
-
         # если заметка с таким именем уже существует, то возвращаем ошибку
         if new_note_name in listdir(FILES_ROOT):
             logger.error(f'Cannot create note! Note with title "{new_note_name}" already exists!')

@@ -1,6 +1,6 @@
 from os import listdir, mkdir
 
-from data.constants import BASEDIR, app
+from data.constants import BASEDIR, DEBUG, app
 
 try:
     from services import views
@@ -26,4 +26,4 @@ app.add_url_rule("/logout", methods=["GET", "POST"], view_func=views.logout)
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0', port='5001')
+    app.run(debug=DEBUG, host='0.0.0.0', port='5001')
